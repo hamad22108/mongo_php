@@ -1,7 +1,7 @@
 <?php
 require 'vendor/autoload.php';
 try {
-   if($_POST['name']) {
+   if($_POST['name'] != null) {
       $data = $_POST;
 
       $client = new MongoDB\Client(
@@ -15,7 +15,7 @@ try {
       // printf("Inserted %d document(s)\n", $insertOneResult->getInsertedCount());
 
       // var_dump($insertOneResult->getInsertedId());
-      echo json_encode(['status'=>200,'data' => $insertOneResult]);
+      echo json_encode(['status'=>200,'data' => $insertOneResult->getInsertedId()]);
    }
    else {
       echo json_encode(['status' => 402, 'msg'=>'name is required','data' => $_POST]);

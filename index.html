@@ -260,19 +260,23 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.2.0/mdb.min.js"
             url: 'insert.php',
             type: "POST",
             data: formData,
+            contentType: "application/x-www-form-urlencoded",
             success: function (response) {
-
-                if (response.status == 'success') {
+                var res = JSON.parse(response)
+                if (res.status == 200) {
                     // success logic
                     console.log('success')
+                    alert('تم الادخال بنجاح')
+                    $('#dataform input').val("");
                 } 
+                else {
+                    alert('الرجاء التأكد من المدخلات');
+                }
             },
-            error: function (err) {
-                console.error(err);
+            error: function () {
                 var errMsg = "Unexpected Server Error! Please Try again later";
                 console.error(errMsg);
-
-
+                alert('الرجاء التأكد من المدخلات');
             }
 
         });
