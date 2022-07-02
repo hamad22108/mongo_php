@@ -15,14 +15,14 @@ try {
       // printf("Inserted %d document(s)\n", $insertOneResult->getInsertedCount());
 
       // var_dump($insertOneResult->getInsertedId());
-      return ['status'=>200,'data' => $insertOneResult];
+      echo json_encode(['status'=>200,'data' => $insertOneResult]);
    }
    else {
-      return ['status' => 402, 'msg'=>'name is required'];
+      echo json_encode(['status' => 402, 'msg'=>'name is required','data' => $_POST]);
    }
    
 } catch (\Throwable $th) {
-   echo $th;
+   echo json_encode(['status' => 500, 'error' => $th]);
 }
 
 

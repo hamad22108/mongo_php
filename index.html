@@ -61,19 +61,11 @@ rel="stylesheet"
                             <form id="dataform" action="insert.php" method="post">
 
                                 <div class="row">
-                                    <div class="col-md-6 mb-4">
+                                    <div class="col-md-12 mb-4">
 
                                         <div class="form-outline">
-                                            <input type="text" name="f_name" id="firstName" class="form-control form-control-lg" />
-                                            <label class="form-label" for="firstName">First Name</label>
-                                        </div>
-
-                                    </div>
-                                    <div class="col-md-6 mb-4">
-
-                                        <div class="form-outline">
-                                            <input type="text" name="l_name" id="lastName" class="form-control form-control-lg" />
-                                            <label class="form-label" for="lastName">Last Name</label>
+                                            <input type="text" name="name" id="firstName" class="form-control form-control-lg" required />
+                                            <label class="form-label" for="firstName">Full Name</label>
                                         </div>
 
                                     </div>
@@ -267,9 +259,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.2.0/mdb.min.js"
         $.ajax({
             url: 'insert.php',
             type: "POST",
-            dataType: "json",
             data: formData,
-            contentType: "application/json; charset=utf-8",
             success: function (response) {
 
                 if (response.status == 'success') {
@@ -277,7 +267,8 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.2.0/mdb.min.js"
                     console.log('success')
                 } 
             },
-            error: function () {
+            error: function (err) {
+                console.error(err);
                 var errMsg = "Unexpected Server Error! Please Try again later";
                 console.error(errMsg);
 
